@@ -8,17 +8,17 @@ image-version: 44
 modules:
   - type: dnf
     repos:
-      rpmfusion:
-        - free
-        - nonfree
+      rpmfusion: true
     install:
-      - intel-media-driver
-      - akmod-nvidia-580xx
-      - xorg-x11-drv-nvidia-580xx
-      - xorg-x11-drv-nvidia-cuda-580xx
+      packages:
+        - intel-media-driver
+        - akmod-nvidia-580xx
+        - xorg-x11-drv-nvidia-580xx
+        - xorg-x11-drv-nvidia-cuda-580xx
     remove:
-      - firefox
-      - firefox-langpacks
+      packages:
+        - firefox
+        - firefox-langpacks
       
   - type: kargs
     kargs:
