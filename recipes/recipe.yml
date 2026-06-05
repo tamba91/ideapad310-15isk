@@ -12,7 +12,6 @@ modules:
       - rpmfusion-nonfree
     install:
       - intel-media-driver
-      - xorg-x11-drv-nvidia-580xx
       - akmod-nvidia-580xx
       - xorg-x11-drv-nvidia-cuda-580xx
     remove:
