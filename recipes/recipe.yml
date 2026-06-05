@@ -7,10 +7,9 @@ image-version: 44
 
 modules:
   - type: rpm-ostree
-    repos:
-      - rpmfusion-free
-      - rpmfusion-nonfree
     install:
+      - mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-%OS_VERSION%.noarch.rpm
+      - mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-%OS_VERSION%.noarch.rpm
       - intel-media-driver
       - akmod-nvidia-580xx
       - xorg-x11-drv-nvidia-cuda-580xx
