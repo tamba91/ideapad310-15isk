@@ -1,45 +1,62 @@
----
-# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
-name: template
-# description will be included in the image's metadata
-description: This is my personal OS image.
+# yaml-language-server: $schema=https://blue-build.org
+name: ideapad310-15isk
+description: OS per Lenovo IdeaPad con driver Nvidia 580xx, CUDA e suite di Flatpak verificati.
 
-# the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 42 # latest is also supported if you want new updates ASAP
+image-version: 44
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
-  - type: files
-    files:
-      - source: system
-        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
-
-  - type: dnf
+  - type: rpm-ostree
     repos:
-      copr:
-        - atim/starship
+      - rpmfusion-free
+      - rpmfusion-nonfree
     install:
-      packages:
-        - micro
-        - starship
+      - intel-media-driver
+      - xorg-x11-drv-nvidia-580xx
+      - akmod-nvidia-580xx
+      - xorg-x11-drv-nvidia-cuda-580xx
     remove:
-      packages:
-        # example: removing firefox (in favor of the flatpak)
-        # "firefox" is the main package, "firefox-langpacks" is a dependency
-        - firefox
-        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+      - firefox
+      - firefox-langpacks
+      
+  - type: kargs
+    arguments:
+      - rd.driver.blacklist=nouveau,nova-core
+      - modprobe.blacklist=nouveau,nova-core
+      - nvidia-drm.modeset=1
+      - initcall_blacklist=simpledrm_platform_driver_init
 
   - type: default-flatpaks
     configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
+      - notify: true
         scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
+        install:
           - org.mozilla.firefox
+          - org.torproject.torbrowser-launcher
+          - org.libreoffice.LibreOffice
+          - org.kde.okular
+          - org.gnome.Evolution
+          - io.missioncenter.MissionCenter
+          - com.github.tchx84.Flatseal
+          - io.github.flattool.Warehouse
+          - org.gnome.Logs
+          - org.gnome.Connections
+          - org.gnome.baobab
+          - com.mattjakeman.ExtensionManager
+          - org.gnome.font-viewer
+          - org.gnome.TextEditor
+          - org.gnome.Boxes
+          - org.qbittorrent.qBittorrent
+          - com.github.rafostar.Clapper
+          - org.gnome.Camera
+          - org.gnome.Calculator
           - org.gnome.Loupe
-      - scope: user # Also add Flathub user repo, but no user packages
+          - org.gnome.Contacts
+          - org.gnome.Weather
+          - org.gnome.clocks
+          - org.gnome.Calendar
+          - org.gnome.Characters
+          - org.gnome.Maps
 
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  - type: signing
+
