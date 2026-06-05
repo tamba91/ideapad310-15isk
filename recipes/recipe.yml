@@ -49,7 +49,7 @@ modules:
           - org.gnome.Boxes
           - org.qbittorrent.qBittorrent
           - com.github.rafostar.Clapper
-          - org.gnome.Camera
+          - org.gnome.Snapshot
           - org.gnome.Calculator
           - org.gnome.Loupe
           - org.gnome.Contacts
