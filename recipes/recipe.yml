@@ -20,7 +20,7 @@ modules:
       - firefox-langpacks
       
   - type: kargs
-    arguments:
+    kargs:
       - rd.driver.blacklist=nouveau,nova-core
       - modprobe.blacklist=nouveau,nova-core
       - nvidia-drm.modeset=1
