@@ -14,7 +14,6 @@ modules:
         - intel-media-driver
         - akmod-nvidia-580xx
         - xorg-x11-drv-nvidia-580xx
-        - xorg-x11-drv-nvidia-cuda-580xx
     remove:
       packages:
         - firefox
