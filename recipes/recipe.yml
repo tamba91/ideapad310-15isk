@@ -6,18 +6,15 @@ base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 44
 
 modules:
-  - type: dnf
-    repos:
-      nonfree: rpmfusion
-    install:
-      packages:
-        - intel-media-driver
-        - akmod-nvidia-580xx
-        - xorg-x11-drv-nvidia-580xx
+  - type: rpm-ostree
     remove:
-      packages:
-        - firefox
-        - firefox-langpacks
+      - firefox
+      - firefox-langpacks
+    install:
+      - intel-media-driver
+
+  - type: nvidia
+    version: 580xx
       
   - type: kargs
     kargs:
