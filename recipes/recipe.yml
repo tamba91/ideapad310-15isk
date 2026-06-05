@@ -8,7 +8,7 @@ image-version: 44
 modules:
   - type: dnf
     repos:
-      rpmfusion: true
+      - rpmfusion
     install:
       packages:
         - intel-media-driver
