@@ -55,9 +55,9 @@ modules:
           - org.gnome.Weather
           - org.gnome.clocks
           - org.gnome.Calendar
-
-  - type: signing        
           - org.gnome.Characters
           - org.gnome.Maps
+          
+  - type: signing
 
 
