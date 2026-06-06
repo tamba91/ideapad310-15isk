@@ -14,8 +14,8 @@ modules:
   # 2. Modulo Akmods con la keyword nativa 'nvidia'
   # BlueBuild compilerà il modulo e scaricherà in automatico driver grafici e CUDA
   - type: akmods
-    install:
-      - nvidia
+    install: []
+    nvidia-driver: nvidia
 
   # 3. Installazione pacchetti extra in user-space e pulizia
   - type: dnf
