@@ -12,8 +12,8 @@ modules:
     install:
       packages:
         - intel-media-driver
-        - kmod-nvidia-580xx
-        #- xorg-x11-drv-nvidia-580xx
+        - akmod-nvidia-580xx
+        - xorg-x11-drv-nvidia-580xx
         #- xorg-x11-drv-nvidia-cuda-580xx
     remove:
       packages:
