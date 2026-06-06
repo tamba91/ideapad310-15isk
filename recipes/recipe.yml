@@ -1,15 +1,14 @@
 # yaml-language-server: $schema=https://blue-build.org
 name: ideapad310-15isk
-description: OS per Lenovo IdeaPad con driver Nvidia Legacy 580xx integrati nativamente.
+description: OS per Lenovo IdeaPad con driver Nvidia Legacy 580xx.
 
-# Cambiamo l'immagine base con quella nativa per la serie 580
-base-image: ghcr.io/ublue-os/silverblue-580
+# Torniamo all'immagine principale stabile
+base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 44
 
 modules:
+  # 1. Pulizia e pacchetti generici
   - type: dnf
-    # Rimuoviamo i repo extra e i pacchetti Nvidia da qui! 
-    # Vengono già ereditati dall'immagine base sopra.
     install:
       packages:
         - intel-media-driver 
@@ -17,7 +16,15 @@ modules:
       packages:
         - firefox
         - firefox-langpacks
-      
+
+  # 2. Modulo ufficiale ublue/bluebuild per i driver Nvidia
+  - type: akmods
+    install:
+      - nvidia
+    nvidia:
+      version: 580 # Specifichiamo la versione corretta per la tua 920MX
+
+  # 3. Parametri del Kernel
   - type: kargs
     kargs:
       - nvidia-drm.modeset=1
@@ -25,6 +32,7 @@ modules:
       - modprobe.blacklist=nouveau,nova-core
       - initcall_blacklist=simpledrm_platform_driver_init
 
+  # 4. Suite Flatpak
   - type: default-flatpaks
     configurations:
       - notify: true
