@@ -1,26 +1,38 @@
 # yaml-language-server: $schema=https://blue-build.org
 name: ideapad310-15isk
-description: OS per Lenovo IdeaPad con driver Nvidia proprietari estratti via akmods.
+description: OS per Lenovo IdeaPad con driver Nvidia Legacy 580xx e Intel Media Driver.
 
 base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 44
 
 modules:
+  # 1. ABILITAZIONE REPOSITORY (Il modo ufficiale BlueBuild)
+  # Questo attiva RPM Fusion Free e Nonfree globalmente per tutti i moduli successivi
+  - type: bling
+    install:
+      - rpmfusion
+
+  # 2. COMPILAZIONE MODULO KERNEL NVIDIA
+  # Usiamo il modulo akmods che gestisce l'ambiente di compilazione isolato
+  # evitando il crash della transazione RPM causato da systemd-rpm-macros
+  - type: akmods
+    install:
+      - akmod-nvidia-580xx
+
+  # 3. INSTALLAZIONE PACCHETTI USER-SPACE
+  # Ora che i repo sono attivi grazie a 'bling', DNF troverà tutto senza problemi
   - type: dnf
     install:
       packages:
-        - intel-media-driver 
+        - intel-media-driver            # Accel. hardware Intel HD 520
+        - xorg-x11-drv-nvidia-580xx      # Componente X11 per la 920MX
+        - xorg-x11-drv-nvidia-580xx-cuda # Supporto CUDA
     remove:
       packages:
         - firefox
         - firefox-langpacks
-
-  # Sintassi flat ufficiale del modulo akmods per BlueBuild
-  - type: akmods
-    install:
-      - nvidia
-    nvidia-driver: nvidia
-
+      
+  # 4. PARAMETRI DEL KERNEL
   - type: kargs
     kargs:
       - nvidia-drm.modeset=1
@@ -28,6 +40,7 @@ modules:
       - modprobe.blacklist=nouveau,nova-core
       - initcall_blacklist=simpledrm_platform_driver_init
 
+  # 5. SUITE FLATPAK
   - type: default-flatpaks
     configurations:
       - notify: true
