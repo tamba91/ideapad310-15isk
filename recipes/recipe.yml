@@ -1,13 +1,11 @@
 # yaml-language-server: $schema=https://blue-build.org
 name: ideapad310-15isk
-description: OS per Lenovo IdeaPad con driver Nvidia Legacy 580xx.
+description: OS per Lenovo IdeaPad con driver Nvidia proprietari estratti via akmods.
 
-# Torniamo all'immagine principale stabile
 base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 44
 
 modules:
-  # 1. Pulizia e pacchetti generici
   - type: dnf
     install:
       packages:
@@ -17,14 +15,12 @@ modules:
         - firefox
         - firefox-langpacks
 
-  # 2. Modulo ufficiale ublue/bluebuild per i driver Nvidia
+  # Sintassi flat ufficiale del modulo akmods per BlueBuild
   - type: akmods
     install:
       - nvidia
-    nvidia:
-      version: 580 # Specifichiamo la versione corretta per la tua 920MX
+    nvidia-driver: nvidia
 
-  # 3. Parametri del Kernel
   - type: kargs
     kargs:
       - nvidia-drm.modeset=1
@@ -32,7 +28,6 @@ modules:
       - modprobe.blacklist=nouveau,nova-core
       - initcall_blacklist=simpledrm_platform_driver_init
 
-  # 4. Suite Flatpak
   - type: default-flatpaks
     configurations:
       - notify: true
