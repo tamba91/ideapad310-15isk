@@ -1,38 +1,33 @@
 # yaml-language-server: $schema=https://blue-build.org
 name: ideapad310-15isk
-description: OS per Lenovo IdeaPad con driver Nvidia Legacy 580xx e Intel Media Driver.
+description: OS per Lenovo IdeaPad con driver Nvidia proprietari e Intel Media Driver.
 
 base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 44
 
 modules:
-  # 1. ABILITAZIONE REPOSITORY (Il modo ufficiale BlueBuild)
-  # Questo attiva RPM Fusion Free e Nonfree globalmente per tutti i moduli successivi
+  # 1. Abilitiamo RPM Fusion (necessario per far trovare l'intel-media-driver a DNF)
   - type: bling
     install:
       - rpmfusion
 
-  # 2. COMPILAZIONE MODULO KERNEL NVIDIA
-  # Usiamo il modulo akmods che gestisce l'ambiente di compilazione isolato
-  # evitando il crash della transazione RPM causato da systemd-rpm-macros
+  # 2. Modulo Akmods con la keyword nativa 'nvidia'
+  # BlueBuild compilerà il modulo e scaricherà in automatico driver grafici e CUDA
   - type: akmods
     install:
-      - akmod-nvidia-580xx
+      - nvidia
 
-  # 3. INSTALLAZIONE PACCHETTI USER-SPACE
-  # Ora che i repo sono attivi grazie a 'bling', DNF troverà tutto senza problemi
+  # 3. Installazione pacchetti extra in user-space e pulizia
   - type: dnf
     install:
       packages:
-        - intel-media-driver            # Accel. hardware Intel HD 520
-        - xorg-x11-drv-nvidia-580xx      # Componente X11 per la 920MX
-        - xorg-x11-drv-nvidia-580xx-cuda # Supporto CUDA
+        - intel-media-driver
     remove:
       packages:
         - firefox
         - firefox-langpacks
       
-  # 4. PARAMETRI DEL KERNEL
+  # 4. Parametri del Kernel per evitare conflitti grafici
   - type: kargs
     kargs:
       - nvidia-drm.modeset=1
@@ -40,7 +35,7 @@ modules:
       - modprobe.blacklist=nouveau,nova-core
       - initcall_blacklist=simpledrm_platform_driver_init
 
-  # 5. SUITE FLATPAK
+  # 5. Suite Flatpak richiesta
   - type: default-flatpaks
     configurations:
       - notify: true
