@@ -1,20 +1,18 @@
 # yaml-language-server: $schema=https://blue-build.org
 name: ideapad310-15isk
-description: OS per Lenovo IdeaPad con driver Nvidia 580xx, CUDA e suite di Flatpak verificati.
+description: OS per Lenovo IdeaPad con driver Nvidia Legacy 580xx integrati nativamente.
 
-base-image: ghcr.io/ublue-os/silverblue-main
+# Cambiamo l'immagine base con quella nativa per la serie 580
+base-image: ghcr.io/ublue-os/silverblue-580
 image-version: 44
 
 modules:
   - type: dnf
-    repos:
-      nonfree: rpmfusion
+    # Rimuoviamo i repo extra e i pacchetti Nvidia da qui! 
+    # Vengono già ereditati dall'immagine base sopra.
     install:
       packages:
-        - intel-media-driver
-        - akmod-nvidia-580xx
-        - xorg-x11-drv-nvidia-580xx
-        #- xorg-x11-drv-nvidia-cuda-580xx
+        - intel-media-driver 
     remove:
       packages:
         - firefox
@@ -22,9 +20,9 @@ modules:
       
   - type: kargs
     kargs:
+      - nvidia-drm.modeset=1
       - rd.driver.blacklist=nouveau,nova-core
       - modprobe.blacklist=nouveau,nova-core
-      - nvidia-drm.modeset=1
       - initcall_blacklist=simpledrm_platform_driver_init
 
   - type: default-flatpaks
@@ -58,5 +56,3 @@ modules:
           - org.gnome.Calendar
           - org.gnome.Characters
           - org.gnome.Maps
-          
-  - type: signing
