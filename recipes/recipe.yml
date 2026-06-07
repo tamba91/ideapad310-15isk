@@ -1,23 +1,19 @@
 # yaml-language-server: $schema=https://blue-build.org
 name: ideapad310-15isk
-description: OS per Lenovo IdeaPad con driver Nvidia proprietari e Intel Media Driver.
+description: OS for Lenovo IdeaPad 310-15ISK with nvidia geforce 920mx
 
 base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 44
 
 modules:
-  # 1. Abilitiamo RPM Fusion (necessario per far trovare l'intel-media-driver a DNF)
   - type: bling
     install:
       - rpmfusion
-
-  # 2. Modulo Akmods con la keyword nativa 'nvidia'
-  # BlueBuild compilerà il modulo e scaricherà in automatico driver grafici e CUDA
+      
   - type: akmods
     install: []
     nvidia-driver: nvidia
-
-  # 3. Installazione pacchetti extra in user-space e pulizia
+    
   - type: dnf
     install:
       packages:
@@ -27,15 +23,13 @@ modules:
         - firefox
         - firefox-langpacks
       
-  # 4. Parametri del Kernel per evitare conflitti grafici
   - type: kargs
     kargs:
       - nvidia-drm.modeset=1
       - rd.driver.blacklist=nouveau,nova-core
       - modprobe.blacklist=nouveau,nova-core
       - initcall_blacklist=simpledrm_platform_driver_init
-
-  # 5. Suite Flatpak richiesta
+      
   - type: default-flatpaks
     configurations:
       - notify: true
