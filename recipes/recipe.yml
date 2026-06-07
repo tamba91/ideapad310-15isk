@@ -18,6 +18,7 @@ modules:
     install:
       packages:
         - intel-media-driver
+        - thermald
     remove:
       packages:
         - firefox
