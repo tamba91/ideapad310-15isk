@@ -9,11 +9,11 @@ modules:
   - type: bling
     install:
       - rpmfusion
-      - gnome-vrr
       
   - type: akmods
-    install: []
-    nvidia-driver: nvidia
+    install:
+      nvidia-driver:
+        - nvidia
     
   - type: dnf
     install:
