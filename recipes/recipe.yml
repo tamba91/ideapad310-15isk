@@ -10,11 +10,9 @@ modules:
     install:
       - rpmfusion
       
-  - type: akmods
-    install:
-      - nvidia-driver: nvidia
+  type: akmods
+    nvidia-driver: nvidia
         
-    
   - type: dnf
     install:
       packages:
