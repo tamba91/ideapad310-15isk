@@ -47,4 +47,4 @@ modules:
           - com.mattjakeman.ExtensionManager
           - org.gnome.Boxes
           - org.qbittorrent.qBittorrent
-          - com.github.rafostar.Clapper
+          - io.github.celluloid_player.Celluloid
