@@ -24,13 +24,6 @@ modules:
         - firefox
         - firefox-langpacks
       
-  - type: kargs
-    kargs:
-      - nvidia-drm.modeset=1
-      - rd.driver.blacklist=nouveau,nova-core
-      - modprobe.blacklist=nouveau,nova-core
-      - initcall_blacklist=simpledrm_platform_driver_init
-      
   - type: default-flatpaks
     configurations:
       - notify: true
