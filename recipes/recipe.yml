@@ -10,7 +10,7 @@ modules:
     install:
       - rpmfusion
         
-  - type: rpm-ostree
+  - type: dnf
     install:
       packages:
         - intel-media-driver
