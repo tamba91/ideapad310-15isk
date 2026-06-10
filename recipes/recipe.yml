@@ -21,7 +21,8 @@ modules:
     remove:
       packages:
         - firefox
-        - firefox-langpacks        
+        - firefox-langpacks  
+        - gnome-software-rpm-ostree
 
   - type: default-flatpaks
     configurations:
