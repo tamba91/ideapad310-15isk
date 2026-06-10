@@ -41,3 +41,5 @@ modules:
           - org.qbittorrent.qBittorrent
           - io.github.celluloid_player.Celluloid
           - org.fedoraproject.MediaWriter
+          
+  - type: signing 
