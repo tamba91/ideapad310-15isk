@@ -6,13 +6,9 @@ base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 44
 
 modules:
-  - type: akmods
-    install: []
-    nvidia-driver: nvidia  
-        
+  # 1. Attivi i repo e installi i pacchetti Intel/System
   - type: dnf
     repos:
-      cleanup: true
       nonfree: rpmfusion
     install:
       packages:
@@ -21,7 +17,15 @@ modules:
     remove:
       packages:
         - firefox
-        - firefox-langpacks        
+        - firefox-langpacks
+
+  - type: akmods
+    install: []
+    nvidia-driver: nvidia
+
+  - type: dnf
+    repos:
+      cleanup: true        
 
   - type: default-flatpaks
     configurations:
