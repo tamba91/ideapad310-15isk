@@ -2,13 +2,8 @@
 name: ideapad310-15isk
 description: OS for Lenovo IdeaPad 310-15ISK with nvidia geforce 920mx
 
-base-image: ghcr.io/ublue-os/silverblue-main
+base-image: ghcr.io/ublue-os/silverblue-nvidia
 image-version: 44
-
-modules:
-  - type: akmods
-    install: []
-    nvidia-driver: nvidia  
         
   - type: dnf
     repos:
