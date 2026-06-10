@@ -14,15 +14,13 @@ modules:
     install: []
     nvidia-driver: nvidia
         
-  - type: dnf
+  - type: rpm-ostree
     install:
-      packages:
-        - intel-media-driver
-        - thermald
+      - intel-media-driver
+      - thermald
     remove:
-      packages:
-        - firefox
-        - firefox-langpacks
+      - firefox
+      - firefox-langpacks
       
   - type: default-flatpaks
     configurations:
@@ -41,3 +39,4 @@ modules:
           - org.gnome.Boxes
           - org.qbittorrent.qBittorrent
           - io.github.celluloid_player.Celluloid
+          - org.fedoraproject.MediaWriter
