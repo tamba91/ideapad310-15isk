@@ -9,19 +9,21 @@ modules:
   - type: bling
     install:
       - rpmfusion
-      
+        
+  - type: rpm-ostree
+    install:
+      packages:
+        - intel-media-driver
+        - thermald
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
+        
   - type: akmods
     install: []
     nvidia-driver: nvidia
-        
-  - type: dnf
-    install:
-      - intel-media-driver
-      - thermald
-    remove:
-      - firefox
-      - firefox-langpacks
-      
+  
   - type: default-flatpaks
     configurations:
       - notify: true
