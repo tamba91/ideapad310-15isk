@@ -6,13 +6,14 @@ base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 44
 
 modules:
-  # 1. Akmods in cima: trova la base pulita e installa Nvidia senza conflitti multilib
   - type: akmods
     install: []
-    nvidia-driver: nvidia
-
-  # 2. DNF installa i pacchetti rimanenti e rimuove firefox
+    nvidia-driver: nvidia  
+        
   - type: dnf
+    repos:
+      cleanup: true
+      nonfree: rpmfusion
     install:
       packages:
         - intel-media-driver
@@ -20,14 +21,8 @@ modules:
     remove:
       packages:
         - firefox
-        - firefox-langpacks
+        - firefox-langpacks        
 
-  # 3. Blocco finale dedicato solo a far sparire le tracce dei repo dall'immagine finale
-  - type: dnf
-    repos:
-      cleanup: true
-
-  # 4. Flatpak di sistema
   - type: default-flatpaks
     configurations:
       - notify: true
