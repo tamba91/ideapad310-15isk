@@ -14,7 +14,7 @@ modules:
     install: []
     nvidia-driver: nvidia
         
-  - type: rpm-ostree
+  - type: dnf
     install:
       - intel-media-driver
       - thermald
