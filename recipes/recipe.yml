@@ -30,16 +30,26 @@ modules:
         scope: system
         install:
           - io.github.kolunmi.Bazaar
+          - com.github.tchx84.Flatseal
+          - io.github.flattool.Warehouse
+          - io.missioncenter.MissionCenter
+          - com.mattjakeman.ExtensionManager
+          - org.gnome.Logs
+          - org.gnome.baobab               
+          - org.gnome.Calculator
+          - org.gnome.TextEditor
+          - org.gnome.Loupe                  
+          - org.gnome.font-viewer
+          - org.gnome.Connections             
+          - org.gnome.Snapshot               
+          - org.gnome.Calendar
+          - org.gnome.clocks
+          - org.gnome.Weather
           - org.mozilla.firefox
           - org.torproject.torbrowser-launcher
           - org.libreoffice.LibreOffice
           - org.kde.okular
           - org.gnome.Evolution
-          - io.missioncenter.MissionCenter
-          - com.github.tchx84.Flatseal
-          - io.github.flattool.Warehouse
-          - org.gnome.Logs
-          - com.mattjakeman.ExtensionManager
           - org.gnome.Boxes
           - org.qbittorrent.qBittorrent
           - io.github.celluloid_player.Celluloid
