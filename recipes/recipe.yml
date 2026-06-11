@@ -21,7 +21,8 @@ modules:
     remove:
       packages:
         - firefox
-        - firefox-langpacks  
+        - firefox-langpacks
+        - gnome-software
 
   - type: default-flatpaks
     configurations:
