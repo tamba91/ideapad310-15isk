@@ -35,7 +35,8 @@ modules:
           - io.missioncenter.MissionCenter
           - com.mattjakeman.ExtensionManager
           - org.gnome.Logs
-          - org.gnome.baobab               
+          - org.gnome.baobab
+          - org.fedoraproject.MediaWriter
           - org.gnome.Calculator
           - org.gnome.TextEditor
           - org.gnome.Loupe                  
@@ -53,6 +54,6 @@ modules:
           - org.gnome.Boxes
           - org.qbittorrent.qBittorrent
           - io.github.celluloid_player.Celluloid
-          - org.fedoraproject.MediaWriter
+
           
   - type: signing 
