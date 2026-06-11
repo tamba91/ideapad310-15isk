@@ -38,6 +38,7 @@ modules:
           - io.missioncenter.MissionCenter
           - com.github.tchx84.Flatseal
           - io.github.flattool.Warehouse
+          - org.gnome.Logs
           - com.mattjakeman.ExtensionManager
           - org.gnome.Boxes
           - org.qbittorrent.qBittorrent
