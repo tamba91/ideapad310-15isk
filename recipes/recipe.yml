@@ -52,7 +52,7 @@ modules:
           - org.gnome.Evolution
           - org.gnome.Boxes
           - org.qbittorrent.qBittorrent
-          - io.github.celluloid_player.Celluloid
-
+          - code.visualstudio.com
+          - org.videolan.VLC
           
   - type: signing 
