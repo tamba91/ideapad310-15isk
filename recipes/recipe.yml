@@ -17,8 +17,6 @@ modules:
     install:
       packages:
         - intel-media-driver
-        - thermald
-        - podman-compose
     remove:
       packages:
         - firefox
