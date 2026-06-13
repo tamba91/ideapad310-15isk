@@ -52,7 +52,7 @@ modules:
           - org.gnome.Evolution
           - org.gnome.Boxes
           - org.qbittorrent.qBittorrent
-          - code.visualstudio.com
+          - com.visualstudio.code
           - org.videolan.VLC
           
   - type: signing 
