@@ -6,23 +6,17 @@ base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 44
 
 modules:
-  - type: akmods
-    install: []
-    nvidia-driver: nvidia  
-        
   - type: dnf
-    repos:
-      cleanup: true
-      nonfree: rpmfusion
-    install:
-      packages:
-        - intel-media-driver
     remove:
       packages:
         - firefox
         - firefox-langpacks
         - gnome-software
-
+  
+  - type: akmods
+    install: []
+    nvidia-driver: nvidia  
+        
   - type: default-flatpaks
     configurations:
       - notify: false
