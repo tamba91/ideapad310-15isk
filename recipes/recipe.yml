@@ -15,7 +15,13 @@ modules:
   
   - type: akmods
     install: []
-    nvidia-driver: nvidia  
+    nvidia-driver: nvidia 
+
+  - type: kargs
+    kargs:
+      - rd.driver.blacklist=nova-core
+      - modprobe.blacklist=nova-core
+      - systemd.tpm2_wait=false
         
   - type: default-flatpaks
     configurations:
