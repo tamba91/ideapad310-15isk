@@ -52,8 +52,6 @@ modules:
           - org.gnome.Evolution
           - org.gnome.Boxes
           - org.qbittorrent.qBittorrent
-          - com.visualstudio.code
-          - com.visualstudio.code.tool.podman//25.08
-          - org.videolan.VLC
+          - org.gnome.Showtime
           
   - type: signing 
