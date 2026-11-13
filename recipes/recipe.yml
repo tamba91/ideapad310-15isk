@@ -26,12 +26,12 @@ modules:
   - type: default-flatpaks
     configurations:
       - notify: false
-        scope: system
+        scope: user
         install:
           - com.github.tchx84.Flatseal
           - io.github.flattool.Warehouse
+          - io.github.kolunmi.Bazaar
           - io.missioncenter.MissionCenter
-          - com.mattjakeman.ExtensionManager
           - org.gnome.Logs
           - org.gnome.baobab
           - org.fedoraproject.MediaWriter
@@ -53,8 +53,5 @@ modules:
           - org.libreoffice.LibreOffice
           - org.kde.okular
           - org.qbittorrent.qBittorrent
-      - notify: false
-        scope: user
-        install: [] 
         
   - type: signing 
